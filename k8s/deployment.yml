@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextjs-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nextjs
+  template:
+    metadata:
+      labels:
+        app: nextjs
+    spec:
+      containers:
+        - name: nextjs
+          image: ghcr.io/sumair99166/nextjs-devops-assessment:latest
+          ports:
+            - containerPort: 3000
+          command: ["npm", "start", "--", "-H", "0.0.0.0", "-p", "3000"]
+
